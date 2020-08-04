@@ -1,6 +1,8 @@
 import { parse } from '@babel/parser';
 import generate from '@babel/generator';
 
+import csstree from 'css-tree';
+
 const removeHtmlComments = str => str.replace(/<!--(.|\s)*?-->/g, '');
 
 const removeCssComments = str => str.replace(/\/\*[\s\S]+?\*\//g, '');
@@ -27,9 +29,14 @@ const removeWhiteSpace = (str = '') => {
   return str.replace(/\s/g, '');
 };
 
+const parseCss = () => {
+  return csstree.parse('body { background-color: red; color: purple}');
+};
+
 export default {
   removeHtmlComments,
   removeCssComments,
   removeJSComments,
-  removeWhiteSpace
+  removeWhiteSpace,
+  parseCss
 };
